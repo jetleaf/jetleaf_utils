@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the parse method from the YamlParser class, for the Dart programming language.">
+  <title>parse method - YamlParser class - utils library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jetleaf_utils</a></li>
+    <li><a href="../../utils/">utils.dart</a></li>
+    <li><a href="../../utils/YamlParser-class.html">YamlParser</a></li>
+    <li class="self-crumb">parse method</li>
+  </ol>
+  <div class="self-name">parse</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="utils&#47;YamlParser-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">parse</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.dart.dev/stable/3.9.2/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+<span class="returntype"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+<span class="name ">parse</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="parse-param-source"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">source</span></span></li>
+</ol>)
+
+      <div class="features"><span class="feature">override</span></div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Parses the given <code>source</code> string into a <code>Map&lt;String, dynamic&gt;</code>.</p>
+<p>Implementations must:</p>
+<ul>
+<li>Convert the raw string into structured key-value pairs.</li>
+<li>Return a valid map representation.</li>
+<li>Throw a <a href="https://api.dart.dev/stable/3.9.2/dart-core/FormatException-class.html">FormatException</a> if parsing fails due to invalid syntax
+or unexpected input.</li>
+</ul>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">final config = parser.parse('{"debug": true}');
+print(config['debug']); // true
+</code></pre>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+Map&lt;String, dynamic&gt; parse(String source) {
+  try {
+    final lines = source.split(&#39;\n&#39;);
+    final root = &lt;String, dynamic&gt;{};
+
+    &#47;&#47; containerStack holds either Map&lt;String,dynamic&gt; or List&lt;dynamic&gt;
+    final List&lt;dynamic&gt; containerStack = [root];
+    final List&lt;int&gt; indentStack = [0];
+
+    for (var i = 0; i &lt; lines.length; i++) {
+      var originalLine = lines[i];
+      var line = originalLine.replaceFirst(RegExp(r&#39;\r$&#39;), &#39;&#39;).trimRight();
+      if (line.trim().isEmpty) continue;
+      final trimmed = line.trim();
+      if (trimmed.startsWith(&#39;#&#39;)) continue; &#47;&#47; comment
+
+      final indent = _getIndentation(originalLine);
+
+      &#47;&#47; pop containers until current indent is &lt; stack top indent
+      while (indentStack.length &gt; 0 &amp;&amp; indent &lt;= indentStack.last &amp;&amp; indentStack.length &gt; 1) {
+        indentStack.removeLast();
+        containerStack.removeLast();
+      }
+
+      final currentContainer = containerStack.last;
+
+      &#47;&#47; List item
+      if (trimmed.startsWith(&#39;-&#39;)) {
+        final itemText = trimmed.length &gt; 1 ? trimmed.substring(1).trim() : &#39;&#39;;
+
+        &#47;&#47; Ensure we have a List to append to. If currentContainer is Map, attempt to attach list to last key.
+        List&lt;dynamic&gt;? targetList;
+        if (currentContainer is List) {
+          targetList = currentContainer;
+        } else if (currentContainer is Map&lt;String, dynamic&gt;) {
+          if (currentContainer.isEmpty) {
+            &#47;&#47; nothing to attach list to — create an anonymous list? skip
+            &#47;&#47; This case shouldn&#39;t normally occur for well-formed YAML that uses key: followed by - items
+            targetList = &lt;dynamic&gt;[];
+            &#47;&#47; We cannot assign to a key, so append to root? fallback:
+            (containerStack.first as Map)[
+                &#39;__anonymous_list_${indentStack.length}_${i}&#39;] = targetList;
+          } else {
+            &#47;&#47; assume last key stores the list
+            final lastKey = currentContainer.keys.last;
+            var existing = currentContainer[lastKey];
+            if (existing is! List) {
+              existing = &lt;dynamic&gt;[];
+              currentContainer[lastKey] = existing;
+            }
+            targetList = existing;
+          }
+        } else {
+          &#47;&#47; unknown container type - skip
+          continue;
+        }
+
+        &#47;&#47; Process itemText
+        if (itemText.isEmpty) {
+          &#47;&#47; item is a nested map (block sequence)
+          final newMap = &lt;String, dynamic&gt;{};
+          targetList.add(newMap);
+          &#47;&#47; push newMap as current container with indent greater than &#39;-&#39; line
+          containerStack.add(newMap);
+          indentStack.add(indent + 1);
+        } else if (itemText.contains(&#39;:&#39;)) {
+          &#47;&#47; inline map item: &quot;- key: value&quot;
+          final colonIdx = itemText.indexOf(&#39;:&#39;);
+          final k = itemText.substring(0, colonIdx).trim();
+          final vstr = itemText.substring(colonIdx + 1).trim();
+          final entryMap = &lt;String, dynamic&gt;{k: _parseValue(vstr)};
+          targetList.add(entryMap);
+        } else {
+          &#47;&#47; scalar item
+          targetList.add(_parseValue(itemText));
+        }
+
+        continue;
+      }
+
+      &#47;&#47; Key: value or key: (empty =&gt; nested structure)
+      if (trimmed.contains(&#39;:&#39;)) {
+        final colonIndex = trimmed.indexOf(&#39;:&#39;);
+        final key = trimmed.substring(0, colonIndex).trim();
+        final valueStr = trimmed.substring(colonIndex + 1).trim();
+
+        if (currentContainer is! Map&lt;String, dynamic&gt;) {
+          &#47;&#47; if we are inside a List with a Map last element, use that map
+          if (currentContainer is List &amp;&amp; currentContainer.isNotEmpty &amp;&amp; currentContainer.last is Map&lt;String, dynamic&gt;) {
+            final parentMap = currentContainer.last as Map&lt;String, dynamic&gt;;
+            if (valueStr.isEmpty) {
+              &#47;&#47; decide whether to create a list or map by looking ahead
+              final next = _peekNextNonEmptyLine(lines, i);
+              if (next != null &amp;&amp; next.indent &gt; indent &amp;&amp; next.trim.startsWith(&#39;-&#39;)) {
+                final list = &lt;dynamic&gt;[];
+                parentMap[key] = list;
+                containerStack.add(list);
+                indentStack.add(indent + 1);
+              } else {
+                final nested = &lt;String, dynamic&gt;{};
+                parentMap[key] = nested;
+                containerStack.add(nested);
+                indentStack.add(indent + 1);
+              }
+            } else {
+              parentMap[key] = _parseValue(valueStr);
+            }
+            continue;
+          } else {
+            &#47;&#47; Unexpected: current container is not a map - create a map and attach? fallback to root
+            if (containerStack.first is Map&lt;String, dynamic&gt;) {
+              (containerStack.first as Map)[key] = valueStr.isEmpty ? &lt;String, dynamic&gt;{} : _parseValue(valueStr);
+              if (valueStr.isEmpty) {
+                containerStack.add((containerStack.first as Map)[key]);
+                indentStack.add(indent + 1);
+              }
+              continue;
+            }
+          }
+        }
+
+        &#47;&#47; currentContainer is a Map&lt;String,dynamic&gt;
+        final map = currentContainer as Map&lt;String, dynamic&gt;;
+
+        if (valueStr.isEmpty) {
+          &#47;&#47; Need to look ahead to decide if this key maps to a List or Map
+          final next = _peekNextNonEmptyLine(lines, i);
+          if (next != null &amp;&amp; next.indent &gt; indent &amp;&amp; next.trim.startsWith(&#39;-&#39;)) {
+            &#47;&#47; create a list
+            final list = &lt;dynamic&gt;[];
+            map[key] = list;
+            containerStack.add(list);
+            indentStack.add(indent + 1);
+          } else {
+            &#47;&#47; create a nested map
+            final nested = &lt;String, dynamic&gt;{};
+            map[key] = nested;
+            containerStack.add(nested);
+            indentStack.add(indent + 1);
+          }
+        } else if (valueStr.startsWith(&#39;[&#39;) &amp;&amp; valueStr.endsWith(&#39;]&#39;)) {
+          map[key] = _parseInlineArray(valueStr);
+        } else if (valueStr.startsWith(&#39;{&#39;) &amp;&amp; valueStr.endsWith(&#39;}&#39;)) {
+          map[key] = _parseInlineObject(valueStr);
+        } else {
+          map[key] = _parseValue(valueStr);
+        }
+
+        continue;
+      }
+
+      &#47;&#47; If we get here: a line without &quot;:&quot; and not starting with &quot;-&quot;. We treat as scalar or ignore.
+      &#47;&#47; For robustness, try to attach to last map if possible.
+      if (currentContainer is Map&lt;String, dynamic&gt; &amp;&amp; currentContainer.isNotEmpty) {
+        final lastKey = currentContainer.keys.last;
+        &#47;&#47; append&#47;overwrite? Usually unexpected - we set as lastKey&#39;s value if it&#39;s a Map and previously empty.
+        final lastVal = currentContainer[lastKey];
+        if (lastVal is Map&lt;String, dynamic&gt; &amp;&amp; lastVal.isEmpty) {
+          &#47;&#47; treat this line as &quot;key: value&quot; missing colon; skip in strict parser
+          &#47;&#47; ignore
+        } else if (lastVal is List) {
+          &#47;&#47; could be something like a list item without &#39;-&#39;; ignore or add
+        }
+      }
+    }
+
+    return root;
+  } catch (e) {
+    throw ParserException(&#39;Failed to parse YAML: $e&#39;);
+  }
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jetleaf_utils</a></li>
+    <li><a href="../../utils/">utils</a></li>
+    <li><a href="../../utils/YamlParser-class.html">YamlParser</a></li>
+    <li class="self-crumb">parse method</li>
+</ol>
+
+    <h5>YamlParser class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_utils
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
