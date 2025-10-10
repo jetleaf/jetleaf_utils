@@ -105,13 +105,13 @@
     },
     {
       "name": "jetleaf_lang",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/onepub.dev%2547api%2547fahnhnofly%2547/jetleaf_lang-1.0.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_lang-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "jetleaf_logging",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/onepub.dev%2547api%2547fahnhnofly%2547/jetleaf_logging-1.0.0",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_logging-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },

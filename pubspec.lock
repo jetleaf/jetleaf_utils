@@ -141,16 +141,16 @@ packages:
     dependency: "direct main"
     description:
       name: jetleaf_lang
-      sha256: "858cf039b6e65111f8f8a4412d26f3ac4366990b5f6915684036a801f2f58a36"
-      url: "https://onepub.dev/api/fahnhnofly/"
+      sha256: "8dcbb2b299a52cbdcf8af56c9524e57e7593b558479ad01d267daee8eda70d1d"
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
   jetleaf_logging:
     dependency: "direct main"
     description:
       name: jetleaf_logging
-      sha256: "1e65f8c5a0dcc552f0f2f6e7cdaad6e3a19c8aaf0c77b671bcc0ea4fbad0f1e4"
-      url: "https://onepub.dev/api/fahnhnofly/"
+      sha256: "02d44f87349f337433437f9c976a6f3550884930a245e97ad9d5d607c2cf6fa9"
+      url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
   js:
