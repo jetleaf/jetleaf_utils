@@ -19,6 +19,7 @@ environment:
   sdk: ^3.9.0
 
 dependencies:
+  meta: ^1.17.0
   jetleaf_lang:
     hosted: https://onepub.dev/api/fahnhnofly/
     version: ^1.0.0
