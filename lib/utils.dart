@@ -30,6 +30,10 @@ export 'src/parsers/dart_parser.dart';
 export 'src/parsers/env_parser.dart';
 export 'src/parsers/parser.dart';
 
+export 'src/stack_trace/stack_trace_parser.dart';
+export 'src/stack_trace/trace_frame.dart';
+export 'src/stack_trace/trace_mapping.dart';
+
 export 'src/exceptions.dart';
 export 'src/assert.dart';
 export 'src/package_utils.dart';

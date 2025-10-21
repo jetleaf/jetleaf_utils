@@ -105,13 +105,13 @@
     },
     {
       "name": "jetleaf_lang",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_lang-1.0.0",
+      "rootUri": "../../jetleaf_lang",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "jetleaf_logging",
-      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_logging-1.0.0",
+      "rootUri": "../../jetleaf_logging",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },

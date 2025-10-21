@@ -5,11 +5,12 @@
   "packages": [
     {
       "name": "jetleaf_utils",
-      "version": "1.0.0",
+      "version": "1.0.0+2",
       "dependencies": [
         "jetleaf_lang",
         "jetleaf_logging",
-        "meta"
+        "meta",
+        "stack_trace"
       ],
       "devDependencies": [
         "lints",
@@ -55,18 +56,25 @@
     },
     {
       "name": "jetleaf_logging",
-      "version": "1.0.0",
+      "version": "1.0.0+2",
       "dependencies": [
         "jetleaf_lang"
       ]
     },
     {
       "name": "jetleaf_lang",
-      "version": "1.0.0",
+      "version": "1.0.0+2",
       "dependencies": [
         "analyzer",
         "dart_internal",
         "meta",
+        "path"
+      ]
+    },
+    {
+      "name": "stack_trace",
+      "version": "1.12.1",
+      "dependencies": [
         "path"
       ]
     },
@@ -156,13 +164,6 @@
       "version": "2.1.4",
       "dependencies": [
         "async"
-      ]
-    },
-    {
-      "name": "stack_trace",
-      "version": "1.12.1",
-      "dependencies": [
-        "path"
       ]
     },
     {

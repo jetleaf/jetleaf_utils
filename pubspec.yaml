@@ -1,25 +1,36 @@
 name: jetleaf_utils
-description: A library that provides high-level of utilities for the Jetleaf application.
-version: 1.0.0
+description: High-level utilities and helpers for JetLeaf applications.
+version: 1.0.0+2
 
 homepage: https://jetleaf.hapnium.com
 repository: https://github.com/jetleaf/jetleaf_utils
+issue_tracker: https://github.com/jetleaf/jetleaf_utils/issues
+documentation: https://jetleaf.hapnium.com/docs/utils
 
 topics:
   - utils
   - helper
+  - extensions
+  - toolkit
+  - jetleaf
 
 keywords:
   - utils
   - helper
+  - extensions
+  - toolkit
+  - jetleaf
 
 environment:
   sdk: ^3.9.0
 
 dependencies:
   meta: ^1.17.0
-  jetleaf_lang: ^1.0.0
-  jetleaf_logging: ^1.0.0
+  stack_trace: ^1.12.1
+  jetleaf_lang: 
+    path: ../jetleaf_lang
+  jetleaf_logging: 
+    path: ../jetleaf_logging
 
 dev_dependencies:
   test: ^1.21.0

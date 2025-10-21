@@ -140,19 +140,17 @@ packages:
   jetleaf_lang:
     dependency: "direct main"
     description:
-      name: jetleaf_lang
-      sha256: "8dcbb2b299a52cbdcf8af56c9524e57e7593b558479ad01d267daee8eda70d1d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
+      path: "../jetleaf_lang"
+      relative: true
+    source: path
+    version: "1.0.0+2"
   jetleaf_logging:
     dependency: "direct main"
     description:
-      name: jetleaf_logging
-      sha256: "02d44f87349f337433437f9c976a6f3550884930a245e97ad9d5d607c2cf6fa9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
+      path: "../jetleaf_logging"
+      relative: true
+    source: path
+    version: "1.0.0+2"
   js:
     dependency: transitive
     description:
@@ -298,7 +296,7 @@ packages:
     source: hosted
     version: "1.10.1"
   stack_trace:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: stack_trace
       sha256: "8b27215b45d22309b5cddda1aa2b19bdfec9df0e765f2de506401c071d38d1b1"
