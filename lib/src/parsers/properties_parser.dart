@@ -232,7 +232,7 @@ class PropertiesParser extends Parser {
           }
           final lastMap = current.last as Map<String, dynamic>;
           // Recursively treat base+indices on this lastMap
-          _setNestedValue(lastMap, segment + (parts.length - 1 > partIndex ? '.' + parts.sublist(partIndex + 1).join('.') : ''), value);
+          _setNestedValue(lastMap, segment + (parts.length - 1 > partIndex ? '.${parts.sublist(partIndex + 1).join('.')}' : ''), value);
           return;
         } else {
           // fallback: create map at top and recurse

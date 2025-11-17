@@ -106,7 +106,7 @@ Map&lt;String, dynamic&gt; parse(String source) {
       final indent = _getIndentation(originalLine);
 
       &#47;&#47; pop containers until current indent is &lt; stack top indent
-      while (indentStack.length &gt; 0 &amp;&amp; indent &lt;= indentStack.last &amp;&amp; indentStack.length &gt; 1) {
+      while (indentStack.isNotEmpty &amp;&amp; indent &lt;= indentStack.last &amp;&amp; indentStack.length &gt; 1) {
         indentStack.removeLast();
         containerStack.removeLast();
       }
@@ -128,7 +128,7 @@ Map&lt;String, dynamic&gt; parse(String source) {
             targetList = &lt;dynamic&gt;[];
             &#47;&#47; We cannot assign to a key, so append to root? fallback:
             (containerStack.first as Map)[
-                &#39;__anonymous_list_${indentStack.length}_${i}&#39;] = targetList;
+                &#39;__anonymous_list_${indentStack.length}_$i&#39;] = targetList;
           } else {
             &#47;&#47; assume last key stores the list
             final lastKey = currentContainer.keys.last;
@@ -285,7 +285,7 @@ Map&lt;String, dynamic&gt; parse(String source) {
 <footer>
   <span class="no-break">
     jetleaf_utils
-      1.0.0
+      1.0.1
   </span>
   
 </footer>

@@ -168,7 +168,9 @@ class EnvParser extends Parser {
       if (idx >= 0) {
         int pos = idx + 6; // skip "export"
         // skip following whitespace
-        while (pos < line.length && _isSpace(line.codeUnitAt(pos))) pos++;
+        while (pos < line.length && _isSpace(line.codeUnitAt(pos))) {
+          pos++;
+        }
         return line.substring(pos);
       }
     }
@@ -262,7 +264,7 @@ class EnvParser extends Parser {
               'Unterminated quoted value starting at line ${currentLineIndex + 1}: ${_preview(working)}');
         }
         // Append newline + next line content and continue scanning
-        stream = stream + '\n' + allLines[nextLineIndex];
+        stream = '$stream\n${allLines[nextLineIndex]}';
         extraLinesConsumed++;
       }
     } else {
@@ -285,18 +287,30 @@ class EnvParser extends Parser {
         final next = s.codeUnitAt(i + 1);
         i++;
         if (isDouble) {
-          if (next == 0x6E) out.write('\n'); // n
-          else if (next == 0x72) out.write('\r'); // r
-          else if (next == 0x74) out.write('\t'); // t
-          else if (next == 0x22) out.write('"'); // "
-          else if (next == 0x27) out.write("'"); // '
-          else if (next == 0x5C) out.write('\\'); // \
-          else out.writeCharCode(next); // unknown escape -> literal char
+          if (next == 0x6E) {
+            out.write('\n'); // n
+          } else if (next == 0x72) {
+            out.write('\r'); // r
+          } else if (next == 0x74) {
+            out.write('\t'); // t
+          } else if (next == 0x22) {
+            out.write('"'); // "
+          } else if (next == 0x27) {
+            out.write("'"); // '
+          } else if (next == 0x5C) {
+            out.write('\\'); // \
+          } else {
+            out.writeCharCode(next); // unknown escape -> literal char
+          }
         } else {
           // single-quoted: allow escaping of single quote and backslash
-          if (next == 0x27) out.write("'");
-          else if (next == 0x5C) out.write('\\');
-          else out.writeCharCode(next);
+          if (next == 0x27) {
+            out.write("'");
+          } else if (next == 0x5C) {
+            out.write('\\');
+          } else {
+            out.writeCharCode(next);
+          }
         }
       } else {
         out.writeCharCode(ch);
@@ -336,7 +350,7 @@ class EnvParser extends Parser {
   // ---- Utility: preview / file / asset -----------------------------------
 
   /// Returns a short preview of a line or string.
-  String _preview(String s, [int max = 80]) => s.length <= max ? s : s.substring(0, max) + '...';
+  String _preview(String s, [int max = 80]) => s.length <= max ? s : '${s.substring(0, max)}...';
 
   @override
   Map<String, dynamic> parseAsset(Asset asset) {

@@ -104,6 +104,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "jetleaf_build",
+      "rootUri": "../../jetleaf_build",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
       "name": "jetleaf_lang",
       "rootUri": "../../jetleaf_lang",
       "packageUri": "lib/",

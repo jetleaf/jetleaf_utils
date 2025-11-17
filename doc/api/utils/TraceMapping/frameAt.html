@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the frameAt method from the TraceMapping class, for the Dart programming language.">
+  <title>frameAt method - TraceMapping class - utils library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jetleaf_utils</a></li>
+    <li><a href="../../utils/">utils.dart</a></li>
+    <li><a href="../../utils/TraceMapping-class.html">TraceMapping</a></li>
+    <li class="self-crumb">frameAt method</li>
+  </ol>
+  <div class="self-name">frameAt</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="utils&#47;TraceMapping-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">frameAt</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<span class="returntype"><a href="../../utils/TraceFrame-class.html">TraceFrame</a>?</span>
+<span class="name ">frameAt</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="frameAt-param-index"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Retrieves the stack frame at the specified hierarchical index.</p>
+<p>This method provides direct access to frames by their position in the
+call stack. Index 0 represents the current method (most recent call),
+while higher indices represent progressively earlier calls.</p>
+<h2 id="example-usage">Example Usage</h2>
+<pre class="language-dart"><code class="language-dart">void analyzeSpecificFrame() {
+  final traceMapping = TraceMapping.fromStackTrace(StackTrace.current);
+  final currentFrame = traceMapping.frameAt(0); // Current method
+  final callerFrame = traceMapping.frameAt(1);  // Immediate caller
+  final rootFrame = traceMapping.frameAt(_frames.length - 1); // Root call
+}
+</code></pre>
+<p>@param index The hierarchical position of the frame to retrieve
+@return The frame at the specified index, or null if index is out of bounds</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">TraceFrame? frameAt(int index) =&gt; (index &gt;= 0 &amp;&amp; index &lt; _frames.length) ? _frames[index] : null;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jetleaf_utils</a></li>
+    <li><a href="../../utils/">utils</a></li>
+    <li><a href="../../utils/TraceMapping-class.html">TraceMapping</a></li>
+    <li class="self-crumb">frameAt method</li>
+</ol>
+
+    <h5>TraceMapping class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_utils
+      1.0.1
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

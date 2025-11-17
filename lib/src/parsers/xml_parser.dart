@@ -240,7 +240,9 @@ class XmlParser extends Parser {
     int i = 0;
     while (i < xml.length) {
       // skip whitespace and text between elements
-      while (i < xml.length && xml[i] != '<') i++;
+      while (i < xml.length && xml[i] != '<') {
+        i++;
+      }
       if (i >= xml.length) break;
 
       final start = i;
@@ -308,7 +310,9 @@ class XmlParser extends Parser {
 
     // Skip the tag name
     int i = 0;
-    while (i < tagHeader.length && !_isSpaceOrDivider(tagHeader.codeUnitAt(i))) i++;
+    while (i < tagHeader.length && !_isSpaceOrDivider(tagHeader.codeUnitAt(i))) {
+      i++;
+    }
     // Parse name="value" pairs
     while (i < tagHeader.length) {
       // skip spaces and trailing slashes
@@ -322,15 +326,21 @@ class XmlParser extends Parser {
 
       // name
       final nameStart = i;
-      while (i < tagHeader.length && _isNameChar(tagHeader.codeUnitAt(i))) i++;
+      while (i < tagHeader.length && _isNameChar(tagHeader.codeUnitAt(i))) {
+        i++;
+      }
       if (i == nameStart) break; // no more attributes
       final name = tagHeader.substring(nameStart, i);
 
       // skip spaces
-      while (i < tagHeader.length && _isSpace(tagHeader.codeUnitAt(i))) i++;
+      while (i < tagHeader.length && _isSpace(tagHeader.codeUnitAt(i))) {
+        i++;
+      }
       if (i >= tagHeader.length || tagHeader[i] != '=') break;
       i++; // '='
-      while (i < tagHeader.length && _isSpace(tagHeader.codeUnitAt(i))) i++;
+      while (i < tagHeader.length && _isSpace(tagHeader.codeUnitAt(i))) {
+        i++;
+      }
       if (i >= tagHeader.length) break;
 
       final quote = tagHeader[i];
@@ -338,7 +348,9 @@ class XmlParser extends Parser {
         // unquoted value (rare in XML, but handle)
         final valStart = i;
         while (i < tagHeader.length &&
-            !_isSpaceOrDivider(tagHeader.codeUnitAt(i))) i++;
+            !_isSpaceOrDivider(tagHeader.codeUnitAt(i))) {
+          i++;
+        }
         final value = tagHeader.substring(valStart, i);
         attrs['@$name'] = value;
         continue;
@@ -347,7 +359,9 @@ class XmlParser extends Parser {
       // quoted value
       i++; // past opening quote
       final valStart = i;
-      while (i < tagHeader.length && tagHeader[i] != quote) i++;
+      while (i < tagHeader.length && tagHeader[i] != quote) {
+        i++;
+      }
       final value = tagHeader.substring(valStart, i);
       if (i < tagHeader.length) i++; // past closing quote
 
@@ -388,7 +402,7 @@ class XmlParser extends Parser {
   /// Returns a preview of the given string, truncated to the specified maximum length.
   /// 
   /// {@endtemplate}
-  String _preview(String s, [int max = 80]) => s.length <= max ? s : s.substring(0, max) + '...';
+  String _preview(String s, [int max = 80]) => s.length <= max ? s : '${s.substring(0, max)}...';
 
   // ---- Asset & File -------------------------------------------------------
 

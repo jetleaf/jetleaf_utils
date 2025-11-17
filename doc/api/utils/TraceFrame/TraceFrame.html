@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the TraceFrame.new constructor from Class TraceFrame from the utils library, for the Dart programming language.">
+  <title>TraceFrame.new constructor - TraceFrame - utils library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">jetleaf_utils</a></li>
+    <li><a href="../../utils/">utils.dart</a></li>
+    <li><a href="../../utils/TraceFrame-class.html">TraceFrame</a></li>
+    <li class="self-crumb">TraceFrame.new const constructor</li>
+  </ol>
+  <div class="self-name">TraceFrame.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="utils&#47;TraceFrame-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">TraceFrame</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      const
+      <span class="name ">TraceFrame</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-hierarchy"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">hierarchy</span>, </span></li>
+<li><span class="parameter" id="-param-className"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">className</span>, </span></li>
+<li><span class="parameter" id="-param-methodName"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">methodName</span>, </span></li>
+<li><span class="parameter" id="-param-packageUri"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">packageUri</span>, </span></li>
+<li><span class="parameter" id="-param-lineNumber"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">lineNumber</span>, </span></li>
+<li><span class="parameter" id="-param-column"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">column</span>, </span></li>
+<li><span class="parameter" id="-param-raw"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">raw</span>, </span></li>
+</ol>})
+    </section>
+    
+<section class="desc markdown">
+  <p>Represents a single structured entry in a JetLeaf stack trace.</p>
+<p>A <a href="../../utils/TraceFrame-class.html">TraceFrame</a> models an individual call frame captured during
+runtime introspection, such as when an exception occurs or when
+JetLeaf’s reflective AOP layer is used to trace execution.</p>
+<p>Represents a single frame in a stack trace with structured parsing and analysis.</p>
+<p>This class provides a structured representation of stack trace frames with
+comprehensive metadata extraction and analysis capabilities. It parses raw
+stack trace lines into meaningful components (class, method, package URI,
+line numbers) and provides utility methods for frame analysis and filtering.</p>
+<p>TraceFrame is essential for JetLeaf's diagnostic, logging, and debugging
+infrastructure, enabling sophisticated stack trace analysis and presentation
+across different execution environments and stack trace formats.</p>
+<p>Each frame contains structured metadata extracted from the raw
+Dart stack trace, including:</p>
+<ul>
+<li>Hierarchical depth within the call stack.</li>
+<li>The class and method context of the call.</li>
+<li>Source file location (package URI, line, column).</li>
+<li>Original raw text of the trace line.</li>
+</ul>
+<p>This class is an essential part of JetLeaf’s runtime diagnostics
+and reflection facilities. It allows accurate mapping between
+user code, proxy-generated calls, and framework-level interceptors.</p>
+<h2 id="example">Example</h2>
+<pre class="language-dart"><code class="language-dart">final frame = TraceFrame(
+  hierarchy: 2,
+  className: 'MyService',
+  methodName: 'processRequest',
+  packageUri: 'package:example/service.dart',
+  lineNumber: 45,
+  column: 12,
+  raw: '#2 MyService.processRequest (package:example/service.dart:45:12)',
+);
+
+print(frame);
+// #2 MyService.processRequest (package:example/service.dart:45:12)
+</code></pre>
+<p>Creates a new TraceFrame with complete structured stack frame information.</p>
+<p>This constructor requires all essential stack frame components and provides
+sensible defaults for optional components through named parameters.</p>
+<p>@param hierarchy The position of this frame in the call stack hierarchy
+@param className The name of the class containing the method (optional)
+@param methodName The name of the method or function (optional)
+@param packageUri The package URI or file path of the source code
+@param lineNumber The line number in the source file
+@param column The column number in the source file
+@param raw The original raw stack trace line text</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const TraceFrame({
+  required this.hierarchy,
+  String? className,
+  String? methodName,
+  required this.packageUri,
+  required this.lineNumber,
+  required this.column,
+  required this.raw
+}) : _className = className ?? _UNKNOWN_CLASS_NAME, _methodName = methodName ?? _UNKNOWN_METHOD_NAME;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">jetleaf_utils</a></li>
+    <li><a href="../../utils/">utils</a></li>
+    <li><a href="../../utils/TraceFrame-class.html">TraceFrame</a></li>
+    <li class="self-crumb">TraceFrame.new const constructor</li>
+</ol>
+
+    <h5>TraceFrame class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_utils
+      1.0.1
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

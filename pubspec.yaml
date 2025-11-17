@@ -1,6 +1,6 @@
 name: jetleaf_utils
 description: High-level utilities and helpers for JetLeaf applications.
-version: 1.0.0+2
+version: 1.0.1
 
 homepage: https://jetleaf.hapnium.com
 repository: https://github.com/jetleaf/jetleaf_utils
@@ -27,10 +27,8 @@ environment:
 dependencies:
   meta: ^1.17.0
   stack_trace: ^1.12.1
-  jetleaf_lang: 
-    path: ../jetleaf_lang
-  jetleaf_logging: 
-    path: ../jetleaf_logging
+  jetleaf_lang: ^1.0.1
+  jetleaf_logging: ^1.0.1
 
 dev_dependencies:
   test: ^1.21.0

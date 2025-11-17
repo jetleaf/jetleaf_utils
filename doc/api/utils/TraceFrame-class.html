@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the TraceFrame class from the utils library, for the Dart programming language.">
+  <title>TraceFrame class - utils library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">jetleaf_utils</a></li>
+    <li><a href="../utils/">utils.dart</a></li>
+    <li class="self-crumb">TraceFrame class</li>
+  </ol>
+  <div class="self-name">TraceFrame</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="utils&#47;utils-library-sidebar.html"
+    data-below-sidebar="utils&#47;TraceFrame-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">TraceFrame</span> class 
+    <a href="https://dart.dev/language/class-modifiers#final" class="feature feature-final" title="This class can neither be extended, implemented, nor mixed in.">final</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Represents a single structured entry in a JetLeaf stack trace.</p>
+<p>A <a href="../utils/TraceFrame-class.html">TraceFrame</a> models an individual call frame captured during
+runtime introspection, such as when an exception occurs or when
+JetLeaf’s reflective AOP layer is used to trace execution.</p>
+<p>Represents a single frame in a stack trace with structured parsing and analysis.</p>
+<p>This class provides a structured representation of stack trace frames with
+comprehensive metadata extraction and analysis capabilities. It parses raw
+stack trace lines into meaningful components (class, method, package URI,
+line numbers) and provides utility methods for frame analysis and filtering.</p>
+<p>TraceFrame is essential for JetLeaf's diagnostic, logging, and debugging
+infrastructure, enabling sophisticated stack trace analysis and presentation
+across different execution environments and stack trace formats.</p>
+<p>Each frame contains structured metadata extracted from the raw
+Dart stack trace, including:</p>
+<ul>
+<li>Hierarchical depth within the call stack.</li>
+<li>The class and method context of the call.</li>
+<li>Source file location (package URI, line, column).</li>
+<li>Original raw text of the trace line.</li>
+</ul>
+<p>This class is an essential part of JetLeaf’s runtime diagnostics
+and reflection facilities. It allows accurate mapping between
+user code, proxy-generated calls, and framework-level interceptors.</p>
+<h2 id="example">Example</h2>
+<pre class="language-dart"><code class="language-dart">final frame = TraceFrame(
+  hierarchy: 2,
+  className: 'MyService',
+  methodName: 'processRequest',
+  packageUri: 'package:example/service.dart',
+  lineNumber: 45,
+  column: 12,
+  raw: '#2 MyService.processRequest (package:example/service.dart:45:12)',
+);
+
+print(frame);
+// #2 MyService.processRequest (package:example/service.dart:45:12)
+</code></pre>
+</section>
+
+
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="TraceFrame.new" class="callable">
+          <span class="name"><a href="../utils/TraceFrame/TraceFrame.html">TraceFrame.new</a></span><span class="signature">({<span class="parameter" id="-param-hierarchy"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">hierarchy</span>, </span><span class="parameter" id="-param-className"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">className</span>, </span><span class="parameter" id="-param-methodName"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">methodName</span>, </span><span class="parameter" id="-param-packageUri"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">packageUri</span>, </span><span class="parameter" id="-param-lineNumber"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">lineNumber</span>, </span><span class="parameter" id="-param-column"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">column</span>, </span><span class="parameter" id="-param-raw"><span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">raw</span></span>})</span>
+        </dt>
+        <dd>
+          Represents a single structured entry in a JetLeaf stack trace.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="TraceFrame.empty" class="callable">
+          <span class="name"><a href="../utils/TraceFrame/TraceFrame.empty.html">TraceFrame.empty</a></span><span class="signature">(<span class="parameter" id="empty-param-raw"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">raw</span></span>)</span>
+        </dt>
+        <dd>
+          Creates an empty TraceFrame from raw stack trace text.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="column" class="property">
+  <span class="name"><a href="../utils/TraceFrame/column.html">column</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The column number in the source file where this frame was executing.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hierarchy" class="property">
+  <span class="name"><a href="../utils/TraceFrame/hierarchy.html">hierarchy</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The hierarchical position of this frame in the stack trace.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="lineNumber" class="property">
+  <span class="name"><a href="../utils/TraceFrame/lineNumber.html">lineNumber</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The line number in the source file where this frame was executing.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="packageUri" class="property">
+  <span class="name"><a href="../utils/TraceFrame/packageUri.html">packageUri</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The package URI or file path containing this stack frame.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="raw" class="property">
+  <span class="name"><a href="../utils/TraceFrame/raw.html">raw</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The raw text of the stack trace line that was parsed to create this frame.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="getClassName" class="callable">
+  <span class="name"><a href="../utils/TraceFrame/getClassName.html">getClassName</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves the class name for this stack frame, if available.
+  
+
+</dd>
+
+        <dt id="getFileName" class="callable">
+  <span class="name"><a href="../utils/TraceFrame/getFileName.html">getFileName</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Extracts the base filename from the package URI without package prefix.
+  
+
+</dd>
+
+        <dt id="getMethodName" class="callable">
+  <span class="name"><a href="../utils/TraceFrame/getMethodName.html">getMethodName</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Retrieves the method name for this stack frame, if available.
+  
+
+</dd>
+
+        <dt id="isTopLevelFunction" class="callable">
+  <span class="name"><a href="../utils/TraceFrame/isTopLevelFunction.html">isTopLevelFunction</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Determines whether this frame represents a top-level function.
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable">
+  <span class="name"><a href="../utils/TraceFrame/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns a formatted string representation of this stack frame.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.9.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">jetleaf_utils</a></li>
+    <li><a href="../utils/">utils</a></li>
+    <li class="self-crumb">TraceFrame class</li>
+</ol>
+
+    <h5>utils library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    jetleaf_utils
+      1.0.1
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

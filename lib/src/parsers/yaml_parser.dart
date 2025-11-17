@@ -65,7 +65,7 @@ class YamlParser extends Parser {
         final indent = _getIndentation(originalLine);
 
         // pop containers until current indent is < stack top indent
-        while (indentStack.length > 0 && indent <= indentStack.last && indentStack.length > 1) {
+        while (indentStack.isNotEmpty && indent <= indentStack.last && indentStack.length > 1) {
           indentStack.removeLast();
           containerStack.removeLast();
         }
@@ -87,7 +87,7 @@ class YamlParser extends Parser {
               targetList = <dynamic>[];
               // We cannot assign to a key, so append to root? fallback:
               (containerStack.first as Map)[
-                  '__anonymous_list_${indentStack.length}_${i}'] = targetList;
+                  '__anonymous_list_${indentStack.length}_$i'] = targetList;
             } else {
               // assume last key stores the list
               final lastKey = currentContainer.keys.last;

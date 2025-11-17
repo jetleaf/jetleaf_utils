@@ -14,10 +14,6 @@
 
 library;
 
-export 'src/asset_loader/_bundler.dart';
-export 'src/asset_loader/bundler.dart';
-export 'src/asset_loader/interface.dart';
-
 export 'src/placeholder/placeholder_parser.dart';
 export 'src/placeholder/placeholder_resolver.dart';
 export 'src/placeholder/property_placeholder_helper.dart';

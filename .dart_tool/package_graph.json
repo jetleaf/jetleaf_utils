@@ -67,6 +67,7 @@
       "dependencies": [
         "analyzer",
         "dart_internal",
+        "jetleaf_build",
         "meta",
         "path"
       ]
@@ -327,6 +328,16 @@
         "source_span",
         "watcher",
         "yaml"
+      ]
+    },
+    {
+      "name": "jetleaf_build",
+      "version": "1.0.0",
+      "dependencies": [
+        "analyzer",
+        "dart_internal",
+        "meta",
+        "path"
       ]
     },
     {
