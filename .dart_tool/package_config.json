@@ -105,19 +105,19 @@
     },
     {
       "name": "jetleaf_build",
-      "rootUri": "../../jetleaf_build",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_build-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "jetleaf_lang",
-      "rootUri": "../../jetleaf_lang",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_lang-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "jetleaf_logging",
-      "rootUri": "../../jetleaf_logging",
+      "rootUri": "file:///Users/mac/.pub-cache/hosted/pub.dev/jetleaf_logging-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },

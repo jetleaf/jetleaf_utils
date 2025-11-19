@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "jetleaf_utils",
-      "version": "1.0.0+2",
+      "version": "1.0.1",
       "dependencies": [
         "jetleaf_lang",
         "jetleaf_logging",
@@ -56,14 +56,14 @@
     },
     {
       "name": "jetleaf_logging",
-      "version": "1.0.0+2",
+      "version": "1.0.1",
       "dependencies": [
         "jetleaf_lang"
       ]
     },
     {
       "name": "jetleaf_lang",
-      "version": "1.0.0+2",
+      "version": "1.0.1",
       "dependencies": [
         "analyzer",
         "dart_internal",
@@ -335,7 +335,6 @@
       "version": "1.0.0",
       "dependencies": [
         "analyzer",
-        "dart_internal",
         "meta",
         "path"
       ]

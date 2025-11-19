@@ -140,24 +140,27 @@ packages:
   jetleaf_build:
     dependency: transitive
     description:
-      path: "../jetleaf_build"
-      relative: true
-    source: path
+      name: jetleaf_build
+      sha256: "0c86d6ed735c17b5357a848ca6cb27639d5c8c81fbb77bf592463cfce2286085"
+      url: "https://pub.dev"
+    source: hosted
     version: "1.0.0"
   jetleaf_lang:
     dependency: "direct main"
     description:
-      path: "../jetleaf_lang"
-      relative: true
-    source: path
-    version: "1.0.0+2"
+      name: jetleaf_lang
+      sha256: "3d25452bb6a90a96dcfffd4b5ad72f14f0718fde8b473dcef4a0f19b02e8142e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   jetleaf_logging:
     dependency: "direct main"
     description:
-      path: "../jetleaf_logging"
-      relative: true
-    source: path
-    version: "1.0.0+2"
+      name: jetleaf_logging
+      sha256: d67f9e3438c376f59125a980e9cd9f152aa631870b65f675dedde7e7c193d089
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   js:
     dependency: transitive
     description:
