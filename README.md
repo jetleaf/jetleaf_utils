@@ -39,9 +39,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  jetleaf_utils:
-    hosted: https://onepub.dev/api/fahnhnofly/
-    version: ^1.0.0
+  jetleaf_utils: ^1.0.0
 ```
 
 Minimum SDK: Dart ^3.9.0
