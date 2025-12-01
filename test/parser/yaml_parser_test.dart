@@ -16,7 +16,7 @@ import 'dart:typed_data';
 import 'package:jetleaf_utils/src/parsers/yaml_parser.dart';
 import 'package:test/test.dart';
 
-import '_helpers.dart';
+import '../_helpers.dart';
 
 void main() {
   group('YamlParser', () {
@@ -32,6 +32,8 @@ void main() {
         name: test
         value: 42
         enabled: true
+        jetleaf.enableautoconfiguration:
+          - package:jetleaf_core/src/scheduling/core/scheduling_auto_configuration.dart.SchedulingAutoConfiguration
         ''';
         final result = parser.parse(yaml);
         

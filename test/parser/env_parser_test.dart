@@ -17,7 +17,7 @@ import 'dart:typed_data';
 import 'package:jetleaf_utils/utils.dart';
 import 'package:test/test.dart';
 
-import '_helpers.dart';
+import '../_helpers.dart';
 
 void main() {
   group('EnvParser', () {

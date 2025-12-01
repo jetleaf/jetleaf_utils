@@ -18,7 +18,7 @@ import 'package:jetleaf_utils/src/exceptions.dart';
 import 'package:jetleaf_utils/src/parsers/json_parser.dart';
 import 'package:test/test.dart';
 
-import '_helpers.dart';
+import '../_helpers.dart';
 
 void main() {
   group('JsonParser', () {
