@@ -17,7 +17,7 @@ import 'dart:typed_data';
 import 'package:jetleaf_utils/src/parsers/xml_parser.dart';
 import 'package:test/test.dart';
 
-import '_helpers.dart';
+import '../_helpers.dart';
 
 void main() {
   group('XmlParser', () {
